@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.dao.UsersMapper">
+    <resultMap id="userMap" type="Users">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+    </resultMap>
+
+    <select id="login" resultMap="userMap" parameterType="Users">
+    select * from users where name = #{name} and password = #{password}
+  </select>
+
+    <insert id="register" parameterType="Users" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into users(name,password,age,sex) values (#{name},#{password},#{age},#{sex})
+    </insert>
+</mapper>
